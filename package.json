@@ -1,10 +1,9 @@
 {
-  "name": "echo-service",
+  "name": "api-k8s-with-env-var",
   "version": "1.0.0",
-  "description": "Basic Echo REST service",
-  "main": "index.js",
+  "description": "Demonstration of k8s deployment with environment variables at run time",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "cg2p",
@@ -14,7 +13,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "http": "0.0.0"
+    "http": "0.0.0",
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {}
 }

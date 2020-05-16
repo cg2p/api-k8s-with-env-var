@@ -11,10 +11,8 @@ const echo = require("./routes/echo.route");
 
 const server = express();
 
-//var host = config.host;
-//var port = config.port;
-var host = '0.0.0.0';
-var port = 3000;
+var host = config.host;
+var port = config.port;
 
 var cors_allow = config.cors_allow;
 
@@ -37,13 +35,12 @@ server.use('/', echo);
 server.use('/live', health.LivenessEndpoint(healthcheck));
 server.use('/ready', health.ReadinessEndpoint(healthcheck));
 server.use('/health', health.HealthEndpoint(healthcheck));
-//server.use('/metrics', require('appmetrics-prometheus').endpoint());
 
 server.listen(port, host, (err) => {
     if (err) {
       return console.log('something bad happened', err)
     }
   
-    console.log('Build version: %s', process.env.version);
+    console.log('Build version: %s', config.version);
     console.log('Server ready on %s %s', host, port);
   })

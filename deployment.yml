@@ -3,36 +3,55 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: echo-service
-  name: echo-service
+    app: app
+  name: api-k8s-with-env-var
+  namespace: prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: echo-service
+      app: app
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: echo-service
+        app: app
     spec:
       containers:
-      - name: echo-service
-        image: echo-service
+      - name: api-k8s-with-env-var-container
+        image: api-k8s-with-env-var-container-image
         ports:
         - containerPort: 3000
-status: {}
+        env:
+          - name: MY_SECRET_URL
+            valueFrom:
+              secretKeyRef:
+                name: my-secret-url
+                key: my_secret_url
+        envFrom:
+          - configMapRef:
+              name: api-k8s-with-env-var-config
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo-service-api
+  name: api-k8s-with-env-var
+  namespace: prod
 spec:
   selector:
-    app: echo-service
+    app: app
   ports:
   - protocol: TCP
     port: 3000
     targetPort: 3000
   type: LoadBalancer
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-k8s-with-env-var-config
+  namespace: prod
+data:
+  testvar: myvar
+
