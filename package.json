@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Demonstration of k8s deployment with environment variables at run time",
   "scripts": {
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "cg2p",
@@ -13,8 +14,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "http": "0.0.0",
-    "nodemon": "^2.0.4"
+    "http": "0.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }

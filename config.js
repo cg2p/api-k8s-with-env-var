@@ -6,8 +6,8 @@ const config = {
   env: process.env.NODE_ENV,
   version: process.env.version,
 
-  port: parseInt(process.env.SERVICE_PORT) || 3000,
-  host: parseInt(process.env.SERVICE_HOST) || 'localhost',
+  port: process.env.SERVICE_PORT || 3000,
+  host: process.env.SERVICE_HOST || '0.0.0.0',
 
   secreturl: process.env.SECRETURL,
   testvar: process.env.TESTVAR, 
