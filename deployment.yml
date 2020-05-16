@@ -8,6 +8,9 @@ metadata:
   namespace: prod
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: app
   template:
     metadata:
       labels:
