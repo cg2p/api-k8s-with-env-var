@@ -8,23 +8,19 @@ metadata:
   namespace: prod
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: app
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: app
     spec:
       containers:
       - name: api-k8s-with-env-var-container
         image: api-k8s-with-env-var-container-image
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
-          - name: MY_SECRET_URL
+          - name: SECRETURL
             valueFrom:
               secretKeyRef:
                 name: my-secret-url
@@ -53,5 +49,5 @@ metadata:
   name: api-k8s-with-env-var-config
   namespace: prod
 data:
-  testvar: myvar
+  TESTVAR: myvar
 
